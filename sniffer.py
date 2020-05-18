@@ -4,9 +4,11 @@ from time import sleep
 
 from scapy.layers.inet import IP
 
+from mongo import Mongo
+
 
 class Sniffer(Thread):
-    def __init__(self, interface="eth0", filter_protocol="icmp"):
+    def __init__(self, interface="eth0", filter_protocol="icmp", mongo_protocol=27017):
         super().__init__()
 
         self.filter_packets = filter_protocol
@@ -15,6 +17,7 @@ class Sniffer(Thread):
         self.socket = None
         self.interface = interface
         self.stop_sniffer = Event()
+        self.mongo = Mongo(mongo_protocol)
 
     def run(self):
         self.socket = conf.L2listen(
@@ -38,21 +41,22 @@ class Sniffer(Thread):
 
     def print_packet(self, packet):
         ip_layer = packet.getlayer(IP)
-        print("[!] New Packet: {src} -> {dst}".format(src=ip_layer.src, dst=ip_layer.dst))
+        src = ip_layer.src
+        dst = ip_layer.dst
+        print("[!] New Packet: {src} -> {dst}".format(src=src, dst=dst))
+        self.mongo.add_to_db(src, dst)
 
 
-sniffer = Sniffer(interface="enp4s0")
+if __name__ == "__main__":
+    sniffer = Sniffer(interface="enp4s0")
+    print("[*] Start sniffing...")
+    sniffer.start()
+    try:
+        while True:
+            sleep(100)
+    except KeyboardInterrupt:
+        print("[*] Stop sniffing")
+        sniffer.join(2.0)
 
-print("[*] Start sniffing...")
-sniffer.start()
-
-
-try:
-    while True:
-        sleep(100)
-except KeyboardInterrupt:
-    print("[*] Stop sniffing")
-    sniffer.join(2.0)
-
-    if sniffer.isAlive():
-        sniffer.socket.close()
+        if sniffer.is_alive():
+            sniffer.socket.close()
