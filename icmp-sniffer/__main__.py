@@ -3,7 +3,7 @@ from time import sleep
 from sniffer import Sniffer
 
 
-def run_sniffer(**args):
+def main(**args):
     sniffer = Sniffer(**args)
     print("[*] Start sniffing...")
     sniffer.start()
@@ -18,4 +18,5 @@ def run_sniffer(**args):
             sniffer.socket.close()
 
 
-run_sniffer(interface="enp4s0", filter_protocol="icmp", mongo_protocol=27017)
+if __name__ == "__main__":
+    main()
