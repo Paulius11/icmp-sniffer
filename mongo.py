@@ -13,7 +13,7 @@ class Mongo:
         }
         result = self.db.icmp.insert_one(business)
         print('Adding src: {} dst: {} '.format(icmp_src, icmp_dest))
-        print('finished adding to db... ;)')
+        print('✓ Finished adding to db.')
 
 
 if __name__ == "__main__":
