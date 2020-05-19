@@ -8,7 +8,7 @@ from mongo import Mongo
 
 
 class Sniffer(Thread):
-    def __init__(self, interface="eth0", filter_protocol="icmp", mongo_protocol=27017):
+    def __init__(self, interface="enp4s0", filter_protocol="icmp", mongo_protocol=27017):
         super().__init__()
 
         self.filter_packets = filter_protocol
