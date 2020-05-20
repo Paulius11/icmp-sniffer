@@ -1,2 +1,2 @@
-# Version of icmp-sniffer
-__version__ = "0.0.1"
+# Version of icmp_sniffer
+__version__ = "0.0.3"
