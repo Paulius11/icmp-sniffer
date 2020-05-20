@@ -4,7 +4,10 @@ from time import sleep
 
 from scapy.layers.inet import IP
 
-from mongo import Mongo
+try:
+    from db import Mongodb
+except ImportError:
+    from .db import Mongodb
 
 
 class Sniffer(Thread):
@@ -17,7 +20,7 @@ class Sniffer(Thread):
         self.socket = None
         self.interface = interface
         self.stop_sniffer = Event()
-        self.mongo = Mongo(mongo_protocol)
+        self.mongo = Mongodb(mongo_protocol)
 
     def run(self):
         self.socket = conf.L2listen(

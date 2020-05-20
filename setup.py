@@ -7,7 +7,7 @@ HERE = pathlib.Path(__file__).parent
 # This call to setup() does all the work
 setup(
     name="icmp_sniffer",
-    version="0.0.3",
+    version="0.0.7",
     description="Scans ping packages and posts them to mongodb.",
     author="Paulius",
     license="MIT",
@@ -21,7 +21,7 @@ setup(
     # install_requires=["pymongo==3.10.1", "scapy==2.4.3"],
     entry_points={
         "console_scripts": [
-            "icmpsn=icmp_sniffer.__main__:main",
+            "icmp_sniffer=icmp_sniffer.__main__:main",
         ]
     },
 )

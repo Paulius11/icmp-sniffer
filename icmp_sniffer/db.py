@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 
-class Mongo:
+class Mongodb:
     def __init__(self, port):
         self.client = MongoClient(port=port)
         self.db = self.client.icmp
@@ -17,5 +17,5 @@ class Mongo:
 
 
 if __name__ == "__main__":
-    mongo = Mongo(27017)
+    mongo = Mongodb(27017)
     mongo.add_to_db(10000, 20000)

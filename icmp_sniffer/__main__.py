@@ -1,6 +1,9 @@
 from time import sleep
 
-from sniffer import Sniffer
+try:
+    from sniffer import Sniffer
+except ImportError:
+    from .sniffer import Sniffer
 
 
 def main(**args):
