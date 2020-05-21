@@ -1,14 +1,19 @@
 import pathlib
 from setuptools import setup
 
+
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
+
+# The text of the README file
+README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
     name="icmp_sniffer",
-    version="0.0.7",
+    version="0.0.8",
     description="Scans ping packages and posts them to mongodb.",
+    long_description=README,
     author="Paulius",
     license="MIT",
     classifiers=[
