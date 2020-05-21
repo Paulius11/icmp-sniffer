@@ -2,7 +2,7 @@
 
 Instruction: 
 
-Program requires admin right
+Program requires admin rights
 
 `$ icmp_sniffer -h` 
 
