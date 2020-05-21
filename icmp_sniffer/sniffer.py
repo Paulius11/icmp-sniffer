@@ -1,7 +1,8 @@
-from scapy.all import *
+from scapy.all import sniff, conf
 from threading import Thread, Event
 from time import sleep
 
+from scapy.data import ETH_P_ALL
 from scapy.layers.inet import IP
 
 try:
