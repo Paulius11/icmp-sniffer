@@ -7,6 +7,12 @@ class Mongodb:
         self.db = self.client.icmp
 
     def add_to_db(self, icmp_src, icmp_dest):
+        """
+        Adds data to mongo db
+        :param icmp_src: source ip address
+        :param icmp_dest: destination ip address
+        :return:
+        """
         business = {
             'source': icmp_src,
             'destination': icmp_dest,

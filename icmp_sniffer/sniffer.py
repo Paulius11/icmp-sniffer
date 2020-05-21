@@ -32,7 +32,7 @@ class Sniffer(Thread):
 
         sniff(
             opened_socket=self.socket,
-            prn=self.print_packet,
+            prn=self.manage_packet,
             stop_filter=self.should_stop_sniffer
         )
 
@@ -43,7 +43,11 @@ class Sniffer(Thread):
     def should_stop_sniffer(self, packet):
         return self.stop_sniffer.isSet()
 
-    def print_packet(self, packet):
+    def manage_packet(self, packet):
+        """
+        Prints packed and saves to mongodb
+        :param packet: received packed
+        """
         ip_layer = packet.getlayer(IP)
         src = ip_layer.src
         dst = ip_layer.dst
