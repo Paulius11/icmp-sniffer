@@ -1,6 +1,5 @@
 from scapy.all import sniff, conf
 from threading import Thread, Event
-from time import sleep
 
 from scapy.data import ETH_P_ALL
 from scapy.layers.inet import IP
@@ -53,18 +52,3 @@ class Sniffer(Thread):
         dst = ip_layer.dst
         print("[!] New Packet: {src} -> {dst}".format(src=src, dst=dst))
         self.mongo.add_to_db(src, dst)
-
-
-if __name__ == "__main__":
-    sniffer = Sniffer(interface="enp4s0")
-    print("[*] Start sniffing...")
-    sniffer.start()
-    try:
-        while True:
-            sleep(100)
-    except KeyboardInterrupt:
-        print("[*] Stop sniffing")
-        sniffer.join(2.0)
-
-        if sniffer.is_alive():
-            sniffer.socket.close()
