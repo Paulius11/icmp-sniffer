@@ -11,7 +11,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="icmp_sniffer",
-    version="0.0.8",
+    version="0.0.9",
     description="Scans ping packages and posts them to mongodb.",
     url="https://github.com/Paulius11/icmp-sniffer",
     long_description=README,
