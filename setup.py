@@ -13,6 +13,7 @@ setup(
     name="icmp_sniffer",
     version="0.0.8",
     description="Scans ping packages and posts them to mongodb.",
+    url="https://github.com/Paulius11/icmp-sniffer",
     long_description=README,
     author="Paulius",
     license="MIT",
