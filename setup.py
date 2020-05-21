@@ -24,7 +24,7 @@ setup(
     ],
     packages=["icmp_sniffer"],
     include_package_data=True,
-    # install_requires=["pymongo==3.10.1", "scapy==2.4.3"],
+    install_requires=["pymongo", "scapy"],
     entry_points={
         "console_scripts": [
             "icmp_sniffer=icmp_sniffer.__main__:main",
