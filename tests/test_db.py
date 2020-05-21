@@ -5,4 +5,4 @@ class TestTest:
         assert 1 == 1
 
     def test_subtraction(self):
-        assert 10 == 5 * 2
+        assert 3 == 5 - 2
