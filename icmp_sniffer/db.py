@@ -11,7 +11,7 @@ class Mongodb:
             'source': icmp_src,
             'destination': icmp_dest,
         }
-        result = self.db.icmp.insert_one(business)
+        self.db.icmp.insert_one(business)
         print('Adding src: {} dst: {} '.format(icmp_src, icmp_dest))
         print('✓ Finished adding to db.')
 
