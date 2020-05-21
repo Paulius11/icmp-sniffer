@@ -1,4 +1,6 @@
 from pymongo import MongoClient
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 
 class Mongodb:
@@ -18,8 +20,9 @@ class Mongodb:
             'destination': icmp_dest,
         }
         self.db.icmp.insert_one(business)
-        print('Adding src: {} dst: {} '.format(icmp_src, icmp_dest))
-        print('✓ Finished adding to db.')
+
+        logging.info('Adding src: {} dst: {} '.format(icmp_src, icmp_dest))
+        logging.info('✓ Finished adding to db.')
 
 
 if __name__ == "__main__":

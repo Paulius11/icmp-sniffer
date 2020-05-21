@@ -5,6 +5,8 @@ except ImportError:
 from time import sleep
 
 import argparse
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--interface", help="specify interface type", default="enp4s0")
@@ -16,13 +18,13 @@ args = parser.parse_args()
 def main():
 
     sniffer = Sniffer(**vars(args))
-    print("[*] Start sniffing...")
+    logging.info("[*] Start sniffing...")
     sniffer.start()
     try:
         while True:
             sleep(100)
     except KeyboardInterrupt:
-        print("[*] Stop sniffing")
+        logging.info("[*] Stop sniffing")
         sniffer.join(2.0)
 
         if sniffer.is_alive():
